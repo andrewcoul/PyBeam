@@ -1,0 +1,12 @@
+Data,Value,Example
+,,
+Units:,Imperial,Imperial or Metric
+Beam Length:,10,
+,,
+Support Name,Support Type,Support Position
+Support A,Pinned,0
+Support B,Roller,10
+,,
+Load Element Name, Load Element Type, Load Element Magnitude, Load Element Start, Load Element End
+LE 1,CL,15,2.5
+LE 2,DL,5,2.5,7.5
