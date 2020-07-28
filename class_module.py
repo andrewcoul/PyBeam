@@ -26,10 +26,11 @@ class ConcentratedMoment:
   
 # distributed loads
 class DistributedLoad:
-  def __init__(self, mag, s, e):
+  def __init__(self, s, e, smag, emag):
     self.start = s
     self.end = e
-    self.magnitude = mag
+    self.start_magnitude = smag
+    self.end_magnitude = emag
   
   def get_start(self):
     return self.start
@@ -37,8 +38,11 @@ class DistributedLoad:
   def get_end(self):
     return self.end
   
-  def get_magnitude(self):
-    return self.magnitude
+  def get_start_magnitude(self):
+    return self.start_magnitude
+    
+  def get_end_magnitude(self):
+    return self.end_magnitude
   
   def get_centroid_load(self):
     self.centroid_load = []
