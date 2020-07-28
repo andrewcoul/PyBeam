@@ -1,30 +1,30 @@
 # This file contains all of the classes for the project
 
-# concentrated loads
+# Concentrated loads
 class ConcentratedLoad:
   def __init__(self, mag, x):
-    self.pos = x
+    self.position = x
     self.magnitude = mag
   
-  def get_pos(self):
-    return self.pos
+  def get_position(self):
+    return self.position
   
   def get_magnitude(self):
     return self.magnitude
   
-# concentrated moments
+# Concentrated moments
 class ConcentratedMoment:
   def __init__(self, x, mag):
-    self.pos = x
+    self.position = x
     self.magnitude = mag
   
-  def get_pos(self):
-    return self.pos
+  def get_position(self):
+    return self.position
   
   def get_magnitude(self):
     return self.magnitude
   
-# distributed loads
+# Distributed loads
 class DistributedLoad:
   def __init__(self, s, e, smag, emag):
     self.start = s
@@ -44,29 +44,77 @@ class DistributedLoad:
   def get_end_magnitude(self):
     return self.end_magnitude
   
-  def get_centroid_load(self):
-    self.centroid_load = []
-    self.centroid_load.append( ( self.start + self.end ) / 2 )
-    self.centroid_load.append( self.magnitude * ( self.end - self.start ) )
-    return self.centroid_load
-  
-  def get_dw(self):
-    return self.magnitude / ( ( self.end - self.start) * 1000 )
-  
-# support
-class Support:
-  def __init__(self, t, x):
-    self.type = t
-    self.pos = x
-    self.reaction = None
-  
-  def get_pos(self):
-    return self.pos
-  
-  def get_reaction(self):
-    return self.reaction
-  
-  def set_reaction(self, r):
-    self.reaction = r
+# Pinned support
+class Pinned:
+  def __init__(self, x):
+    self.position = x
+    self.x_reaction = None
+    self.y_reaction = None
    
+  def set_x_reaction(self, r):
+    self.x_reaction = r
   
+  def set_y_reaction(self, r):
+    self.y_reaction = r
+    
+  def get_position(self):
+    return self.position
+  
+  def get_x_reaction(self):
+    return self.x_reaction
+  
+  def get_y_reaction(self):
+    return self.y_reaction
+  
+  def get_type(self):
+    return 'Pinned'
+
+# Roller support  
+class Roller:
+  def __init__(self, x):
+    self.position = x
+    self.y_reaction = None
+  
+  def set_y_reaction(self, r):
+    self.y_reaction = r
+  
+  def get_position(self):
+    return self.position
+  
+  def get_y_reaction(self):
+    return self.y_reaction
+    
+  def get_type(self):
+    return 'Roller'
+
+# Fixed support    
+class Fixed:
+  def __init__(self, x):
+    self.position = x
+    self.x_reaction = None
+    self.y_reaction = None
+    self.internal_moment = None
+    
+  def set_x_reaction(self, r):
+    self.x_reaction = r
+    
+  def set_y_reaction(self, r):
+    self.y_reaction = r
+    
+  def set_internal_moment(self, m):
+    self.internal_moment = m
+    
+  def get_position(self):
+    return self.position
+  
+  def get_x_reaction(self):
+    return self.x_reaction
+  
+  def get_y_reaction(self):
+    return self.y_reaction
+  
+  def get_internal_moment(self):
+    return self.internal_moment
+    
+  def get_type(self):
+    return 'Fixed'
