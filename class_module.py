@@ -44,6 +44,18 @@ class DistributedLoad:
   def get_end_magnitude(self):
     return self.end_magnitude
   
+  def get_total_load(self):
+    if self.start_magnitude == self.end_magnitude:
+      return self.start_magnitude * (self.end - self.start)
+    else:
+      if self.start_magnitude > self.end_magnitude:
+        return (self.end_magnitude * (self.end - self.start)) + ((self.end - self.start) * (self.start_magnitude - self.end_magnitude) * 0.5)
+      else:
+        return (self.start_magnitude * (self.end - self.start)) + ((self.end - self.start) * (self.end_magnitude - self.start_magnitude) * 0.5)
+  
+  def get_centroid():
+    return ((self.end-self.start)
+  
 # Pinned support
 class Pinned:
   def __init__(self, x):
